@@ -37,7 +37,7 @@ export default function VRScene({ scrollProgress = 0, className = '', size = 'he
       const rotateX = mouseRef.current.y * 5 + Math.sin(clock * 0.5) * 2;
       const rotateY = mouseRef.current.x * 7 - scrollRef.current * 10;
       const floatY = Math.sin(clock) * 8;
-      const horizontalOffset = size === 'hero' ? 12 : 0;
+      const horizontalOffset = 0;
       modelRef.current.style.transform = `translate3d(${horizontalOffset}px, ${floatY}px, 0) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
     };
     animate();
@@ -64,6 +64,7 @@ export default function VRScene({ scrollProgress = 0, className = '', size = 'he
         justifyContent: 'center',
         perspective: '1000px',
         transformStyle: 'preserve-3d',
+        overflow: 'hidden',
       }}
     >
       <model-viewer
@@ -76,19 +77,20 @@ export default function VRScene({ scrollProgress = 0, className = '', size = 'he
         loading="eager"
         interaction-prompt="none"
         touch-action="pan-y"
-        camera-orbit="0deg 75deg 2.2m"
-        min-camera-orbit="auto auto 2.2m"
-        max-camera-orbit="auto auto 2.2m"
+        camera-orbit="0deg 72deg 2.8m"
+        min-camera-orbit="auto auto 2.8m"
+        max-camera-orbit="auto auto 2.8m"
+        field-of-view="32deg"
         shadow-intensity="0"
         style={{
-          width: size === 'hero' ? 'min(88%, 620px)' : 'min(84%, 460px)',
-          maxHeight: '100%',
-          height: '100%',
+          width: size === 'hero' ? 'min(82%, 520px)' : 'min(80%, 460px)',
+          height: 'clamp(260px, 42vw, 480px)',
           filter: 'drop-shadow(0 20px 50px rgba(0,0,0,0.45))',
           willChange: 'transform',
           transformStyle: 'preserve-3d',
           userSelect: 'none',
           background: 'transparent',
+          margin: '0 auto',
         }}
       />
     </div>

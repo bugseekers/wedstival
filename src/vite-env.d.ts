@@ -12,6 +12,7 @@ declare namespace JSX {
       'camera-orbit'?: string;
       'min-camera-orbit'?: string;
       'max-camera-orbit'?: string;
+      'field-of-view'?: string;
       'interaction-prompt'?: string;
       'touch-action'?: string;
       loading?: 'eager' | 'lazy' | 'auto';
