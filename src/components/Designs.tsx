@@ -42,6 +42,9 @@ const designs = [
   },
 ];
 
+const toOptimizedWebp = (src: string) =>
+  `https://images.weserv.nl/?url=${encodeURIComponent(src.replace(/^https?:\/\//, ''))}&w=1400&output=webp&q=82`;
+
 export default function Designs() {
   const sectionRef = useRef<HTMLElement>(null);
   const titleRef = useRef<HTMLDivElement>(null);
@@ -167,11 +170,15 @@ export default function Designs() {
             >
               <img
                 className="design-img"
-                src={design.image}
+                src={toOptimizedWebp(design.image)}
                 alt={design.title}
                 loading="lazy"
+                decoding="async"
+                width={1400}
+                height={933}
                 style={{
                   width: '100%', height: '100%', objectFit: 'cover',
+                  aspectRatio: '3 / 2',
                   transition: 'transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)',
                 }}
               />

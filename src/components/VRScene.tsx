@@ -8,12 +8,11 @@ interface VRSceneProps {
 
 export default function VRScene({ scrollProgress = 0, className = '', size = 'hero' }: VRSceneProps) {
   const mountRef = useRef<HTMLDivElement>(null);
-  const imageRef = useRef<HTMLImageElement>(null);
+  const modelRef = useRef<HTMLElement>(null);
   const mouseRef = useRef({ x: 0, y: 0 });
   const scrollRef = useRef(scrollProgress);
 
-  const headsetImage =
-    'https://raw.githubusercontent.com/bugseekers/assets/main/ChatGPT%20Image%20Apr%209%2C%202026%2C%2012_45_17%20PM.png';
+  const modelUrl = 'https://raw.githubusercontent.com/bugseekers/assets/main/VR%20Headset.glb';
 
   useEffect(() => {
     if (!mountRef.current) return;
@@ -32,14 +31,14 @@ export default function VRScene({ scrollProgress = 0, className = '', size = 'he
     const animate = () => {
       frameId = requestAnimationFrame(animate);
       clock += 0.008;
-      if (!imageRef.current) return;
+      if (!modelRef.current) return;
 
-      // Preserve previous feel: auto spin + mouse-driven tilt + gentle floating motion.
-      const rotateX = mouseRef.current.y * 9 + Math.sin(clock * 0.5) * 3;
-      const rotateY = mouseRef.current.x * 12 - clock * 8 - scrollRef.current * 28;
+      // Preserve the premium floating feel while model-viewer handles model rotation.
+      const rotateX = mouseRef.current.y * 5 + Math.sin(clock * 0.5) * 2;
+      const rotateY = mouseRef.current.x * 7 - scrollRef.current * 10;
       const floatY = Math.sin(clock) * 8;
       const horizontalOffset = size === 'hero' ? 12 : 0;
-      imageRef.current.style.transform = `translate3d(${horizontalOffset}px, ${floatY}px, 0) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      modelRef.current.style.transform = `translate3d(${horizontalOffset}px, ${floatY}px, 0) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
     };
     animate();
 
@@ -67,20 +66,29 @@ export default function VRScene({ scrollProgress = 0, className = '', size = 'he
         transformStyle: 'preserve-3d',
       }}
     >
-      <img
-        ref={imageRef}
-        src={headsetImage}
+      <model-viewer
+        ref={modelRef}
+        src={modelUrl}
         alt="Wedstival VR headset"
+        auto-rotate
+        camera-controls
+        disable-zoom
         loading="eager"
+        interaction-prompt="none"
+        touch-action="pan-y"
+        camera-orbit="0deg 75deg 2.2m"
+        min-camera-orbit="auto auto 2.2m"
+        max-camera-orbit="auto auto 2.2m"
+        shadow-intensity="0"
         style={{
           width: size === 'hero' ? 'min(88%, 620px)' : 'min(84%, 460px)',
           maxHeight: '100%',
-          objectFit: 'contain',
+          height: '100%',
           filter: 'drop-shadow(0 20px 50px rgba(0,0,0,0.45))',
           willChange: 'transform',
           transformStyle: 'preserve-3d',
-          pointerEvents: 'none',
           userSelect: 'none',
+          background: 'transparent',
         }}
       />
     </div>
