@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: auto;
+  }
+
+  body {
+    background: #080808;
+    color: #FFFFFF;
+    font-family: "Poppins", sans-serif;
+  }
+
+  input::placeholder,
+  textarea::placeholder,
+  select {
+    color: rgba(255, 255, 255, 0.3);
+  }
+
+  input::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+    opacity: 0.6;
+  }
+
+  input[type="date"],
+  input[type="time"],
+  select {
+    color-scheme: dark;
+  }
+
+  select option {
+    background: #111;
+    color: #FFFFFF;
+  }
+}
+
+@layer components {
+  .max-w-7xl {
+    @apply max-w-6xl;
+  }
+
+  .max-w-5xl {
+    @apply max-w-4xl;
+  }
+}
+
+@keyframes blink {
+  0%, 100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 14px;
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+
+  .max-w-7xl {
+    width: 100%;
+  }
+
+  button {
+    tap-highlight-color: transparent;
+  }
+
+  input,
+  select,
+  textarea {
+    font-size: 16px;
+    border-radius: 0;
+  }
+}
+
+@media (hover: none) and (pointer: coarse) {
+  button:hover,
+  a:hover {
+    opacity: 1 !important;
+  }
+}
