@@ -10,6 +10,7 @@ import Technology from './components/Technology';
 import Process from './components/Process';
 import Testimonials from './components/Testimonials';
 import Booking from './components/Booking';
+import Legal from './components/Legal';
 import Footer from './components/Footer';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -46,6 +47,7 @@ export default function App() {
       <Process />
       <Testimonials />
       <Booking />
+      <Legal />
       <Footer />
     </div>
   );

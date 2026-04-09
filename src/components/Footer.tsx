@@ -39,7 +39,7 @@ export default function Footer() {
                 fontFamily: '"Playfair Display", serif', fontSize: '1.4rem',
                 fontWeight: 600, color: '#C9A84C', letterSpacing: '0.05em',
               }}>
-                Vivaha Vizha
+                Wedstival
               </div>
               <div style={{
                 fontFamily: '"Poppins", sans-serif', fontSize: '0.62rem',
@@ -112,8 +112,8 @@ export default function Footer() {
             </h4>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
               {[
-                ['hello@vivahavizha.in', 'Email'],
-                ['+91 98400 00000', 'Phone'],
+                ['thesociominds@gmail.com', 'Email'],
+                ['+91 72005 33553', 'Phone'],
                 ['Chennai · Coimbatore · Madurai', 'Locations'],
               ].map(([value, label]) => (
                 <div key={label}>
@@ -147,21 +147,26 @@ export default function Footer() {
             fontFamily: '"Poppins", sans-serif', fontSize: '0.72rem',
             color: 'rgba(255,255,255,0.2)', fontWeight: 300,
           }}>
-            © 2024 Vivaha Vizha. All rights reserved.
+            © 2024 Wedstival. All rights reserved.
           </span>
           <div style={{ display: 'flex', gap: 'clamp(12px, 3vw, 24px)' }}>
-            {['Privacy Policy', 'Terms of Service'].map((item) => (
-              <span
-                key={item}
+            {[
+              ['#privacy-policy', 'Privacy Policy'],
+              ['#terms-and-conditions', 'Terms and Conditions'],
+            ].map(([href, label]) => (
+              <button
+                key={href}
+                onClick={() => scrollTo(href)}
                 style={{
                   fontFamily: '"Poppins", sans-serif', fontSize: '0.72rem',
                   color: 'rgba(255,255,255,0.2)', cursor: 'pointer', transition: 'color 0.3s',
+                  background: 'none', border: 'none', padding: 0,
                 }}
                 onMouseEnter={(e) => { (e.target as HTMLElement).style.color = 'rgba(255,255,255,0.5)'; }}
                 onMouseLeave={(e) => { (e.target as HTMLElement).style.color = 'rgba(255,255,255,0.2)'; }}
               >
-                {item}
-              </span>
+                {label}
+              </button>
             ))}
           </div>
         </div>

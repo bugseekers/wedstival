@@ -64,7 +64,7 @@ export default function Navigation() {
               letterSpacing: '0.05em',
             }}
           >
-            Vivaha Vizha
+            Wedstival
           </span>
           <span
             style={{

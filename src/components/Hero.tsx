@@ -231,7 +231,7 @@ export default function Hero() {
             </div>
 
             {/* Stats */}
-            <div className="flex gap-12 mt-4">
+            <div className="flex flex-wrap gap-8 sm:gap-12 mt-4">
               {[['200+', 'Weddings'], ['15+', 'Years'], ['100%', 'Satisfaction']].map(([num, label]) => (
                 <div key={label}>
                   <div style={{ fontFamily: '"Playfair Display", serif', fontSize: '1.6rem', color: '#C9A84C', fontWeight: 600 }}>{num}</div>

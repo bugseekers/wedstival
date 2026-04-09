@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { supabase, Booking as BookingType } from '../lib/supabase';
+import { Booking as BookingType } from '../lib/supabase';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -41,14 +41,36 @@ export default function Booking() {
     e.preventDefault();
     setSubmitting(true);
     setError('');
+    try {
+      const subject = encodeURIComponent(`Wedstival Consultation Request - ${form.name}`);
+      const body = encodeURIComponent(
+        [
+          'New consultation request from Wedstival website',
+          '',
+          `Name: ${form.name}`,
+          `Email: ${form.email}`,
+          `Phone: ${form.phone}`,
+          `Wedding Date: ${form.wedding_date || 'Not provided'}`,
+          `Wedding Style: ${form.wedding_type || 'Not provided'}`,
+          `Expected Guests: ${form.guest_count || 'Not provided'}`,
+          '',
+          'Additional Notes:',
+          form.message || 'N/A',
+        ].join('\n')
+      );
 
-    const { error: err } = await supabase.from('bookings').insert([form]);
+      const gmailComposeUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=thesociominds@gmail.com&su=${subject}&body=${body}`;
+      const opened = window.open(gmailComposeUrl, '_blank', 'noopener,noreferrer');
 
-    setSubmitting(false);
-    if (err) {
-      setError('Something went wrong. Please try again or contact us directly.');
-    } else {
+      if (!opened) {
+        window.location.href = `mailto:thesociominds@gmail.com?subject=${subject}&body=${body}`;
+      }
+
       setSubmitted(true);
+    } catch {
+      setError('Unable to open your email app. Please email us directly at thesociominds@gmail.com.');
+    } finally {
+      setSubmitting(false);
     }
   };
 
@@ -151,7 +173,7 @@ export default function Booking() {
                 Request Received
               </h3>
               <p style={{ fontFamily: '"Poppins", sans-serif', fontSize: '0.9rem', color: 'rgba(255,255,255,0.5)', fontWeight: 300, lineHeight: 1.8 }}>
-                Thank you for reaching out. Our design team will contact you within 24 hours to confirm your consultation slot.
+                Thank you for reaching out. Your draft has been opened in Gmail to send to thesociominds@gmail.com.
               </p>
             </div>
           ) : (

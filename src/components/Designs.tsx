@@ -6,39 +6,39 @@ gsap.registerPlugin(ScrollTrigger);
 
 const designs = [
   {
-    category: 'Royal',
-    title: 'Maharaja Heritage',
-    description: 'Opulent mandaps, regal floral canopies, gold-threaded drapes',
-    image: 'https://images.pexels.com/photos/1616113/pexels-photo-1616113.jpeg?auto=compress&cs=tinysrgb&w=800',
-    span: 'col-span-2',
+    category: 'Elegant',
+    title: 'Timeless Elegance in Every Detail',
+    description: 'A serene blend of arches, greenery, and soft florals crafted for a graceful wedding experience.',
+    image: 'https://raw.githubusercontent.com/bugseekers/assets/main/1-6.jpg.jpeg',
+    span: 'md:col-span-2',
   },
   {
-    category: 'Traditional',
-    title: 'Tamil Maangalyam',
-    description: 'Sacred banana leaf arrangements, kolam artistry, brass vessel decor',
-    image: 'https://images.pexels.com/photos/2253870/pexels-photo-2253870.jpeg?auto=compress&cs=tinysrgb&w=800',
-    span: 'col-span-1',
+    category: 'Royal Pastel',
+    title: 'Where Tradition Meets Royal Beauty',
+    description: 'Intricate patterns and pastel tones create a majestic backdrop inspired by heritage palaces.',
+    image: 'https://raw.githubusercontent.com/bugseekers/assets/main/1.jpg.jpeg',
+    span: 'md:col-span-1',
   },
   {
-    category: 'Modern Elegant',
-    title: 'Ethereal Whites',
-    description: 'Minimalist luxury with cascading blooms and subtle metallics',
-    image: 'https://images.pexels.com/photos/931177/pexels-photo-931177.jpeg?auto=compress&cs=tinysrgb&w=800',
-    span: 'col-span-1',
+    category: 'Classic Traditional',
+    title: 'Celebrating Culture with Grandeur',
+    description: 'A rich traditional setup with floral drapes and golden elements for an authentic wedding feel.',
+    image: 'https://raw.githubusercontent.com/bugseekers/assets/main/SAVE_20260409_124836.jpg.jpeg',
+    span: 'md:col-span-1',
   },
   {
-    category: 'Royal',
-    title: 'Garden Royale',
-    description: 'Lush outdoor setups with velvet drapes and ambient lighting',
-    image: 'https://images.pexels.com/photos/1114425/pexels-photo-1114425.jpeg?auto=compress&cs=tinysrgb&w=800',
-    span: 'col-span-1',
+    category: 'Premium Green',
+    title: 'Nature-Inspired Luxury Stage',
+    description: 'Lush greenery and soft lighting combine to create a refreshing and premium wedding ambiance.',
+    image: 'https://raw.githubusercontent.com/bugseekers/assets/main/SAVE_20260409_124755.jpg.jpeg',
+    span: 'md:col-span-1',
   },
   {
-    category: 'Modern Elegant',
-    title: 'Celestial Noir',
-    description: 'Dark romantic aesthetics with starlight installations',
-    image: 'https://images.pexels.com/photos/1043902/pexels-photo-1043902.jpeg?auto=compress&cs=tinysrgb&w=800',
-    span: 'col-span-2',
+    category: 'Grand Pink Royal',
+    title: 'A Royal Affair in Blush Tones',
+    description: 'Elegant chandeliers, floral arrangements, and royal decor designed for a dreamy celebration.',
+    image: 'https://raw.githubusercontent.com/bugseekers/assets/main/WeddingStage.jpg.jpeg',
+    span: 'md:col-span-2',
   },
 ];
 
@@ -76,7 +76,7 @@ export default function Designs() {
     return () => ctx.revert();
   }, []);
 
-  const categories = ['All', 'Royal', 'Traditional', 'Modern Elegant'];
+  const categories = ['All', 'Elegant', 'Royal Pastel', 'Classic Traditional', 'Premium Green', 'Grand Pink Royal'];
 
   return (
     <section
@@ -136,17 +136,14 @@ export default function Designs() {
           </div>
         </div>
 
-        <div
-          ref={gridRef}
-          className="grid grid-cols-3 gap-4"
-        >
+        <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {designs.map((design, i) => (
             <div
               key={i}
               className={`design-card ${design.span}`}
               style={{
                 position: 'relative',
-                height: i === 0 || i === 4 ? '420px' : '340px',
+                height: i === 0 || i === 4 ? 'clamp(320px, 45vw, 420px)' : 'clamp(280px, 40vw, 340px)',
                 overflow: 'hidden',
                 cursor: 'pointer',
                 opacity: 0,
